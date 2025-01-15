@@ -1,0 +1,40 @@
+---
+import NavBar from '@components/shared/NavBar.astro';
+import { ViewTransitions } from 'astro:transitions';
+import { siteInfo } from 'src/consts/site-info';
+
+interface Props{
+    title?: string;
+	image?: string;
+	description?: string
+}
+
+const {title = siteInfo.title, description = siteInfo.description, image} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!--seo -->
+	<meta name="description" content={description}>
+	<meta name="author" content={'Edwin tzuc poot'}>
+
+	<!--metatags-->
+	<meta name="og:title" content={title}>
+	<meta name="og:description" content={description}>
+	<meta name="og:image" content={image}>
+
+	<title>{title}</title>
+	<ViewTransitions />
+</head>
+<body class="bg-slate-500 text-slate-200 m-auto max-w-3xl">
+	<NavBar />
+	<main class="mt-10 m-auto max-w-3xl mx-4">
+		<slot />
+	</main>
+    
+</body>
+</html>
